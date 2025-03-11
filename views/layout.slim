@@ -1,11 +1,27 @@
 doctype html
 html
   head
-    title Fictional Animal Webshop
-    link rel="stylesheet" href="/css/style.css"
+    title Webshop
+    link rel="stylesheet" href="css/style.css"
   body
-    - if flash[:success]
-      .flash.success = flash[:success]
-    - if flash[:error]
-      .flash.error = flash[:error]
-    == yield
+    header
+      nav
+        ul
+          li
+            a href="/" Home
+          li
+            a href="/animals" Djur
+          li
+            a href="/register" Registrera
+          li
+            a href="/login" Login
+
+    main
+      - if flash[:success]
+        .flash.success = flash[:success]
+      - if flash[:error]
+        .flash.error = flash[:error]
+      == yield
+
+    footer
+      p &copy; 2025 Legendariska Djur
