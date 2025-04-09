@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/chrisb/yard-sinatra
+  revision: 226e048f615bdf068e65010d47f8cb143fd08865
+  specs:
+    yard-sinatra (2.0.0.beta)
+      activesupport
+      yard (~> 0.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -74,6 +82,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uri (1.0.2)
+    yard (0.9.37)
 
 PLATFORMS
   x64-mingw-ucrt
@@ -82,10 +91,13 @@ DEPENDENCIES
   bcrypt
   sinatra
   sinatra-activerecord
+  sinatra-contrib
   sinatra-flash
   sinatra-reloader
   slim
   sqlite3
+  yard
+  yard-sinatra!
 
 BUNDLED WITH
    2.5.21

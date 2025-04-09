@@ -1,0 +1,20 @@
+.animal-detail
+  .animal-image-container
+    - if @animal.image_filename.present?
+      img src="/uploads/#{@animal.image_filename}" alt="#{@animal.name}"
+    - else
+      img src="/img/placeholder.jpg" alt="No image available"
+  
+  .animal-info
+    h1 = @animal.name
+    p.description = @animal.description
+    p.price $#{@animal.price.to_f.round(2)}
+    
+    - if current_user && (current_user == @animal.user || admin?)
+      .animal-actions
+        a.edit-btn href="/animals/#{@animal.id}/edit" Edit
+        form.delete-form action="/animals/#{@animal.id}" method="post"
+          input type="hidden" name="_method" value="delete"
+          button.delete-btn type="submit" Delete
+  
+  a.back-link href="/animals" ← Back to All Animals

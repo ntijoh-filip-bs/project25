@@ -1,0 +1,24 @@
+.profile-container
+  h1 Your Profile
+  .user-actions
+    a.new-animal-btn href="/animals/new" Upload New Animal
+
+  h2 Your Animals
+  .animal-grid
+    - @animals.each do |animal|
+      .animal-card
+        .animal-image-container
+          - if animal.image_filename.present?
+            img src="/uploads/#{animal.image_filename}" alt="#{animal.name}"
+          - else
+            img src="/img/placeholder.jpg" alt="No image available"
+        
+        .animal-info
+          h2 = animal.name
+          p.price $#{animal.price.to_f.round(2)}
+          .animal-actions
+            a.view-details href="/animals/#{animal.id}" View
+            a.edit-btn href="/animals/#{animal.id}/edit" Edit
+            form.delete-form action="/animals/#{animal.id}" method="post"
+              input type="hidden" name="_method" value="delete"
+              button.delete-btn type="submit" Delete

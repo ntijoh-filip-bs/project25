@@ -1,0 +1,18 @@
+.user-form
+  h1 Edit User: #{@user.username}
+  
+  form action="/admin/users/#{@user.id}" method="post"
+    input type="hidden" name="_method" value="put"
+    
+    .form-group
+      label for="username" Username:
+      input type="text" name="username" value="#{@user.username}" required
+    
+    .form-group
+      label
+        input type="checkbox" name="admin" checked=@user.admin?
+        | Admin Privileges
+    
+    .form-actions
+      button.save-btn type="submit" Save Changes
+      a.cancel-btn href="/admin/users/#{@user.id}" Cancel

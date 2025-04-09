@@ -1,0 +1,31 @@
+.animal-form
+  h1 Edit #{@animal.name}
+  
+  form action="/animals/#{@animal.id}" method="post" enctype="multipart/form-data"
+    input type="hidden" name="_method" value="put"
+    
+    .form-group
+      label for="name" Name:
+      input type="text" name="name" value="#{@animal.name}" required
+    
+    .form-group
+      label for="description" Description:
+      textarea name="description" required = @animal.description
+    
+    .form-group
+      label for="price" Price:
+      input type="number" name="price" step="0.01" value="#{@animal.price}" required
+    
+    .form-group
+      label for="image" Animal Image:
+      - if @animal.image_filename
+        .current-image
+          img src="/uploads/#{@animal.image_filename}" alt="Current image"
+          label
+            input type="checkbox" name="remove_image"
+            | Remove current image
+      input type="file" name="image" accept="image/png, image/jpeg"
+    
+    .form-actions
+      button.save-btn type="submit" Update Animal
+      a.cancel-btn href="/animals/#{@animal.id}" Cancel

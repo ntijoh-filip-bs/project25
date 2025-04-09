@@ -1,0 +1,23 @@
+.animal-form
+  h1 Add New Animal
+  
+  form action="/animals" method="post" enctype="multipart/form-data"
+    .form-group
+      label for="name" Name:
+      input type="text" name="name" required
+    
+    .form-group
+      label for="description" Description:
+      textarea name="description" required
+    
+    .form-group
+      label for="price" Price:
+      input type="number" name="price" step="0.01" required
+    
+    .form-group
+      label for="image" Animal Image:
+      input type="file" name="image" accept="image/png, image/jpeg"
+    
+    .form-actions
+      button.save-btn type="submit" Create Animal
+      a.cancel-btn href="/animals" Cancel

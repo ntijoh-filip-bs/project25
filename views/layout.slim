@@ -2,7 +2,7 @@ doctype html
 html
   head
     title Webshop
-    link rel="stylesheet" href="css/style.css"
+    link rel="stylesheet" href="/css/style.css"
   body
     header
       nav
@@ -10,11 +10,21 @@ html
           li
             a href="/" Home
           li
-            a href="/animals" Djur
-          li
-            a href="/register" Registrera
-          li
-            a href="/login" Login
+            a href="/animals" Animals
+          - if logged_in?
+            li
+              a href="/profile" Profile
+            li
+              a href="/logout" Logout
+            - if admin?
+              li
+                a href="/admin/users" Admin Panel
+          - else
+            li
+              a href="/login" Login
+            li
+              a href="/register" Register
+
 
     main
       - if flash[:success]
@@ -23,5 +33,4 @@ html
         .flash.error = flash[:error]
       == yield
 
-    footer
-      p &copy; 2025 Legendariska Djur
+

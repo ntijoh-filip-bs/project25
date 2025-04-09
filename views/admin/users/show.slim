@@ -1,0 +1,19 @@
+.user-detail
+  h1 = @user.username
+  
+  .user-info
+    p
+      strong Admin: 
+      = @user.admin? ? 'Yes' : 'No'
+    p
+      strong Animals Uploaded: 
+      = @user.animals.count
+    
+    - if @user.can_be_managed_by?(current_user)
+      .user-actions
+        a.edit-btn href="/admin/users/#{@user.id}/edit" Edit User
+        form.delete-form action="/admin/users/#{@user.id}" method="post"
+          input type="hidden" name="_method" value="delete"
+          button.delete-btn type="submit" Delete User
+  
+  a.back-link href="/admin/users" ← Back to All Users

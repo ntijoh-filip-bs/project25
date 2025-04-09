@@ -1,0 +1,20 @@
+h1 User Management
+
+table.user-table
+  thead
+    tr
+      th Username
+      th Admin
+      th Actions
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.username
+        td = user.admin? ? '✅' : '❌'
+        td.actions
+          a.view-btn href="/admin/users/#{user.id}" View
+          a.edit-btn href="/admin/users/#{user.id}/edit" Edit
+          - if user.can_be_managed_by?(current_user)
+            form.delete-form action="/admin/users/#{user.id}" method="post"
+              input type="hidden" name="_method" value="delete"
+              button.delete-btn type="submit" Delete
